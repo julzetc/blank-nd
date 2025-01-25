@@ -10,19 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js (Ensure we have the latest stable version)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Use an appropriate Node.js version
+          node-version: '16'  # You can change this to a different version if needed
 
+      # Step 3: Install Neocities CLI globally
       - name: Install Neocities CLI
-        run: npm install -g neocities
+        run: |
+          npm install -g neocities
+          neocities --version  # Check if the CLI is installed successfully
 
+      # Step 4: Deploy to Neocities
       - name: Deploy to Neocities
         env:
-          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_SECRET_KEY}}
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_SECRET_KEY }}  # Using the new secret name
         run: neocities push . --exclude README.md
+
 
