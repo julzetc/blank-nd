@@ -29,21 +29,10 @@ jobs:
           npm -v
           echo "Installed packages:"
           npm list --depth=0  # List local packages to verify neocities is installed
-          echo "PATH:"
-          echo $PATH  # Print PATH to check if neocities is in the correct path
 
-      # Step 4: Ensure the Neocities CLI is available in this session
-      - name: Add Neocities to PATH
-        run: |
-          export PATH=$PATH:$(pwd)/node_modules/.bin  # Add local node_modules/.bin to PATH
-          echo "Updated PATH: $PATH"
-          neocities --version  # Verify if the CLI works after updating the PATH
-
-      # Step 5: Deploy to Neocities
-      - name: Deploy to Neocities
+      # Step 4: Use npx to run Neocities CLI (without needing to modify the PATH)
+      - name: Deploy to Neocities with npx
         env:
           NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_SECRET_KEY }}
-        run: neocities push . --exclude README.md
-
-
-
+        run: |
+          npx neocities push . --exclude README.md
