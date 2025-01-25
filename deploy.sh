@@ -20,7 +20,7 @@ fi
 
 # Step 3: Push to Neocities (excluding unwanted files)
 echo "Deploying to Neocities..."
-neocities push . --exclude README.md --exclude deploy.sh --exclude .git --exclude .github  # Excluding specific files
+neocities push . --exclude README.md --exclude deploy.sh --exclude .git --exclude .github --exclude .DS_Store  # Excluding specific files
 
 if [ $? -ne 0 ]; then
     echo "Error deploying to Neocities. Exiting."
