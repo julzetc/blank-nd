@@ -20,29 +20,30 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install Neocities CLI globally
+      # Step 3: Install Neocities CLI locally in the project folder
       - name: Install Neocities CLI
         run: |
-          npm install -g neocities
+          npm install neocities  # Local installation
           echo "Node and npm version:"
           node -v
           npm -v
           echo "Installed packages:"
-          npm list -g --depth=0  # List installed npm packages to verify neocities is installed
+          npm list --depth=0  # List local packages to verify neocities is installed
           echo "PATH:"
           echo $PATH  # Print PATH to check if neocities is in the correct path
 
-      # Step 4: Add Neocities CLI to the PATH (for this specific shell session)
+      # Step 4: Ensure the Neocities CLI is available in this session
       - name: Add Neocities to PATH
         run: |
-          export PATH=$PATH:/opt/hostedtoolcache/node/16.20.2/x64/lib/node_modules/.bin
+          export PATH=$PATH:$(pwd)/node_modules/.bin  # Add local node_modules/.bin to PATH
           echo "Updated PATH: $PATH"
-          neocities --version  # Verify the CLI works after updating the PATH
+          neocities --version  # Verify if the CLI works after updating the PATH
 
       # Step 5: Deploy to Neocities
       - name: Deploy to Neocities
         env:
           NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_SECRET_KEY }}
         run: neocities push . --exclude README.md
+
 
 
