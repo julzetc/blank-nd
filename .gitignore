@@ -1,0 +1,9 @@
+# Ignore Git directories
+.git/
+
+# Ignore system files
+.DS_Store  # macOS system file
+Thumbs.db  # Windows system file
+
+# Ignore any hidden files/folders (e.g., system files)
+.*
