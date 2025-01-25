@@ -18,7 +18,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # You can change this to a different version if needed
+          node-version: '16'
 
       # Step 3: Install Neocities CLI globally
       - name: Install Neocities CLI
@@ -28,10 +28,16 @@ jobs:
           which neocities  # Check the path of the installed Neocities CLI
           neocities --version  # Check if the Neocities CLI works
 
-      # Step 4: Deploy to Neocities
+      # Step 4: Verify if 'neocities' is available in the PATH
+      - name: Check if Neocities is available
+        run: |
+          echo $PATH  # Print out the PATH to check if the Neocities CLI is included
+          neocities --version  # Double-check Neocities CLI works after the PATH check
+
+      # Step 5: Deploy to Neocities
       - name: Deploy to Neocities
         env:
-          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_SECRET_KEY }}  # Using the new secret name
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_SECRET_KEY }}
         run: neocities push . --exclude README.md
 
 
