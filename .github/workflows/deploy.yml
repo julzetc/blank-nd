@@ -24,15 +24,20 @@ jobs:
       - name: Install Neocities CLI
         run: |
           npm install -g neocities
-          npm list -g neocities  # Verify if Neocities CLI is installed globally
-          which neocities  # Check the path of the installed Neocities CLI
-          neocities --version  # Check if the Neocities CLI works
+          echo "Node and npm version:"
+          node -v
+          npm -v
+          echo "Installed packages:"
+          npm list -g --depth=0  # List installed npm packages to verify neocities is installed
+          echo "PATH:"
+          echo $PATH  # Print PATH to check if neocities is in the correct path
 
-      # Step 4: Verify if 'neocities' is available in the PATH
-      - name: Check if Neocities is available
+      # Step 4: Add Neocities CLI to the PATH (for this specific shell session)
+      - name: Add Neocities to PATH
         run: |
-          echo $PATH  # Print out the PATH to check if the Neocities CLI is included
-          neocities --version  # Double-check Neocities CLI works after the PATH check
+          export PATH=$PATH:/opt/hostedtoolcache/node/16.20.2/x64/lib/node_modules/.bin
+          echo "Updated PATH: $PATH"
+          neocities --version  # Verify the CLI works after updating the PATH
 
       # Step 5: Deploy to Neocities
       - name: Deploy to Neocities
