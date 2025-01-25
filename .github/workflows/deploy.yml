@@ -24,7 +24,9 @@ jobs:
       - name: Install Neocities CLI
         run: |
           npm install -g neocities
-          neocities --version  # Check if the CLI is installed successfully
+          npm list -g neocities  # Verify if Neocities CLI is installed globally
+          which neocities  # Check the path of the installed Neocities CLI
+          neocities --version  # Check if the Neocities CLI works
 
       # Step 4: Deploy to Neocities
       - name: Deploy to Neocities
