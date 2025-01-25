@@ -4,3 +4,4 @@ I am building a neocities website using VScode, and Neocities CLI to upload my c
 
 This repository no longer uses a yml workflow to upload to github and neocities. I tried to set up and automation, and it failed a bunch of times. Will revisit this later.
 
+This update should reset, and remove any scripts I made for automation
