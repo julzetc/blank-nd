@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Step 1: Push to GitHub
+# Step 1: Push to GitHub (if needed)
 echo "Pushing changes to GitHub..."
 git add .
 git commit -m "Deploying changes"
@@ -18,14 +18,9 @@ then
     npm install -g neocities
 fi
 
-# Step 3: Clean up files that are not supposed to be deployed
-echo "Cleaning up files before deploying..."
-rm -rf .git  # Removes the .git directory entirely
-rm -f .gitignore  # Optional: remove .gitignore if you don't want it pushed
-
-# Step 4: Push to Neocities (excluding unwanted files)
+# Step 3: Exclude unwanted files and push to Neocities
 echo "Deploying to Neocities..."
-neocities push . --exclude .git --exclude README.md --exclude deploy.sh --exclude .github --exclude .DS_Store  # Excluding specific files
+neocities push . --exclude .git --exclude .DS_Store --exclude README.md --exclude deploy.sh --exclude .github
 
 if [ $? -ne 0 ]; then
     echo "Error deploying to Neocities. Exiting."
@@ -33,3 +28,4 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Deployment complete!"
+
