@@ -1,0 +1,14 @@
+# Ignore .git directory (Git metadata)
+.git/
+
+# Ignore system files
+.DS_Store
+
+# Ignore README.md if you don't want to upload it
+README.md
+
+# Ignore deploy script
+deploy.sh
+
+# Ignore .github directory (GitHub actions, workflows, etc.)
+.github/
