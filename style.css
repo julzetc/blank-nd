@@ -5,6 +5,7 @@
 h1, h2, h3 {
   font-family: 'Orbitron', sans-serif;
   color: #F7931A;
+  padding-bottom: 1px;
 }
 
 code, pre {
@@ -51,4 +52,14 @@ nav a {
   color: #F7931A;
   font-family: 'Orbitron', sans-serif;
   padding-left: 20px;
+}
+
+.content div{ 
+  display: flex;
+  flex-direction: column;
+  padding-top: 1px;
+  border-bottom: #F7931A 2px solid;
+  align-items: flex-start;
+  gap: 1px;
+
 }
