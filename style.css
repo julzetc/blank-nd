@@ -1,17 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&family=Roboto+Mono:wght@400;700&family=Orbitron:wght@400;700&display=swap');
 
+/* My CSS code is below this line */
+
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: #F7931A;
+}
+
+code, pre {
+  font-family: 'VT323', monospace;
+}
 
 body {
   background-color: #000000;
   color: #AFEEEE;
   font-family: 'Roboto Mono', monospace;
+  margin: 0; /* Reset margin */
+  box-sizing: border-box; /* Include padding in element's width */
+  width: 100%;
+  height: 95%;
 }
 
-h1, h2, h3 {
-  font-family: 'Orbitron', sans-serif; 
-  color: #F7931A
+header {
+  background-color: #005F5F;
+  margin: 0; /* Ensure no margin */
+  border-bottom: 2px solid #F7931A;
+  height: 75px;
+  width: 100%; /* Ensure header stretches full width */
+  display: flex;
+  align-items: center;
 }
 
-code, pre {
-  font-family: 'VT323', monospace;
+nav {
+  display: flex;
+  padding: 10px;
+  margin-left: auto; /* Push nav to the right */
+  align-content: center;
+}
+
+nav a {
+  color: #F7931A;
+  text-decoration: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.header-title {
+  flex: 1;
+  text-align: left;
+  color: #F7931A;
+  font-family: 'Orbitron', sans-serif;
+  padding-left: 20px;
 }
