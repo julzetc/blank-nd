@@ -25,7 +25,7 @@ body {
 }
 
 header {
-  background-color: #005F5F;
+  background-color: #3b7e3d;
   margin: 0; /* Ensure no margin */
   border-bottom: 2px solid #F7931A;
   height: 75px;
@@ -66,7 +66,7 @@ nav a {
 }
 
 footer {
-  background-color: #005F5F;
+  background-color: #3b7e3d;
   color: #F7931A;
   text-align: center;
   padding: 10px;
