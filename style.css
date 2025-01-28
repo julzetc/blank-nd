@@ -13,6 +13,8 @@ code, pre {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-color: #000000;
   color: #AFEEEE;
   font-family: 'Roboto Mono', monospace;
@@ -55,11 +57,20 @@ nav a {
 }
 
 .content div{ 
-  display: flex;
-  flex-direction: column;
+  flex: 1;
   padding-top: 1px;
   border-bottom: #F7931A 2px solid;
   align-items: flex-start;
   gap: 1px;
+
+}
+
+footer {
+  background-color: #005F5F;
+  color: #F7931A;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto; /* Push footer to the bottom */
+  width: 100%;
 
 }
