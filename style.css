@@ -48,6 +48,12 @@ nav a {
   padding: 10px;
 }
 
+nav a:hover {
+  background-color: #F7931A;
+  color: #000000;
+  border-radius: 5px;
+}
+
 .header-title {
   flex: 1;
   text-align: left;
