@@ -8,50 +8,109 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-<header>
- <div class="header-title"><h1>Julz Etc</h1></div>
-  <nav><a href="/index.html">Home</a>  <a href="#about">About</a>  <a href="#music">Music</a>  <a href="#ref">Referals</a>  <a href="#projects">Projects</a> <a href="#images">Images</a></nav>
-</header>
-<script src="/script.js"></script>
-<div class="content">
-  <div class="news">
-    <h2>Welcome!</h2>
-
-    <p>Welcome to my Neocities page, over the coming weeks I plan on making small changes everyday. 
-      
-      <br>Please check back often! 
-      <br> -J 
-      <br>Jan 30 25
-    </p>
-  </div>
-  <div class="about" id="about">
-    <h2>About</h2>
-    <p>Hi! I'm JulzETC - Father, Millenial, Bitcoiner. Welcome to my neocities site. I plan for this site to be a place for me to learn web-development, and to share things that I have made along the way. Please check back often for updates! 
-    </p>
-  </div>
-  <div class="music" id="music">
-    <h2>Music</h2>
-    <p>Here I plan to share my playlists.
-    </p>
-  </div>
-    <div class="ref" id="ref">
-      <h2>Referals</h2>
-      <p>Here I plan to share referal links to apps, and platforms that I use.
-      </p>
-   </div>
-   <div class="projects" id="projects">
-      <h2>Projects</h2>
-      <p>Here I plan to share links to the projects I am working on.
-      </p>
+    <header>
+      <div class="header-title"><h1>Julz Etc</h1></div>
+      <nav>
+        <a href="/index.html">Home</a>  
+        <a href="#about">About</a>  
+        <a href="#music">Music</a>  
+        <a href="#ref">Referals</a>  
+        <a href="#projects">Projects</a> 
+        <a href="#images">Images</a>
+        <a href="#satoshi-to-nzd">Satoshi to NZD</a>
+      </nav>
+    </header>
+    <script src="/script.js"></script>
+    <div class="content">
+      <div class="news">
+        <h2>Welcome!</h2>
+        <p>Welcome to my Neocities page, over the coming weeks I plan on making small changes every day. 
+        <br>Please check back often! 
+        <br> -J 
+        <br>Jan 30 25
+        </p>
+      </div>
+      <div class="about" id="about">
+        <h2>About</h2>
+        <p>Hi! I'm JulzETC - Father, Millennial, Bitcoiner. Welcome to my Neocities site. I plan for this site to be a place for me to learn web development, and to share things that I have made along the way. Please check back often for updates!</p>
+      </div>
+      <div class="music" id="music">
+        <h2>Music</h2>
+        <p>Here I plan to share my playlists.</p>
+      </div>
+      <div class="ref" id="ref">
+        <h2>Referals</h2>
+        <p>Here I plan to share referral links to apps, and platforms that I use.</p>
+      </div>
+      <div class="projects" id="projects">
+        <h2>Projects</h2>
+        <p>Here I plan to share links to the projects I am working on.</p>
       </div>
       <div class="images" id="images">
         <h2>Images</h2>
-        <p>Image Gallary goes here
-        </p>
+        <p>Image Gallery goes here</p>
       </div>
-      </div> <!-- closing content tag -->
-</body>
-  <footer>
-    <p> &copy; 2025 JulzETC </p>
-  </footer>
+
+      <!-- Satoshi to NZD Calculator Section -->
+      <div class="satoshi-to-nzd" id="satoshi-to-nzd">
+        <h2>Satoshi to NZD Calculator</h2>
+        <label for="satoshis">Enter Satoshis:</label>
+        <input type="number" id="satoshis" placeholder="Enter satoshis">
+        <button onclick="convertSatoshis()">Convert</button>
+        <p id="result"></p>
+      </div>
+
+    </div> <!-- closing content tag -->
+    
+    <footer>
+      <p>&copy; 2025 JulzETC</p>
+    </footer>
+
+    <!-- Satoshi to NZD Conversion Script -->
+    <script>
+      // Function to fetch the current Bitcoin price in USD
+      async function getBitcoinPriceUSD() {
+        const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.bitcoin.usd;
+      }
+
+      // Function to fetch the current USD to NZD exchange rate
+      async function getUSDtoNZD() {
+        const url = "https://api.exchangerate-api.com/v4/latest/USD";
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.rates.NZD;
+      }
+
+      // Function to calculate the value of satoshis in NZD
+      async function satsToNZD(satoshis) {
+        const bitcoinPriceUSD = await getBitcoinPriceUSD();
+        const usdToNZD = await getUSDtoNZD();
+
+        // Convert satoshis to Bitcoin (1 Bitcoin = 100,000,000 satoshis)
+        const bitcoinValue = satoshis / 100000000;
+
+        // Calculate the value in USD
+        const valueUSD = bitcoinValue * bitcoinPriceUSD;
+
+        // Convert the value to NZD
+        const valueNZD = valueUSD * usdToNZD;
+
+        return valueNZD;
+      }
+
+      // Function to convert input satoshis
+      async function convertSatoshis() {
+        const satoshis = document.getElementById('satoshis').value;
+        if (satoshis) {
+          const value = await satsToNZD(satoshis);
+          document.getElementById('result').innerText = `${satoshis} satoshis is worth NZD ${value.toFixed(2)}`;
+        } else {
+          document.getElementById('result').innerText = "Please enter a valid number of satoshis.";
+        }
+      }
+    </script>
+  </body>
 </html>
