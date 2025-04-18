@@ -57,7 +57,10 @@
         <label for="satoshis">Enter Satoshis:</label>
         <input type="number" id="satoshis" placeholder="Enter satoshis">
         <button onclick="convertSatoshis()">Convert</button>
-        <p id="result"></p>
+        
+        <!-- Added output text box -->
+        <label for="result">Result (NZD):</label>
+        <input type="text" id="result" readonly>
       </div>
 
     </div> <!-- closing content tag -->
@@ -106,9 +109,9 @@
         const satoshis = document.getElementById('satoshis').value;
         if (satoshis) {
           const value = await satsToNZD(satoshis);
-          document.getElementById('result').innerText = `${satoshis} satoshis is worth NZD ${value.toFixed(2)}`;
+          document.getElementById('result').value = `NZD ${value.toFixed(2)}`;
         } else {
-          document.getElementById('result').innerText = "Please enter a valid number of satoshis.";
+          document.getElementById('result').value = "Please enter a valid number of satoshis.";
         }
       }
     </script>
